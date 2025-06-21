@@ -8,10 +8,9 @@ def load_data_df_x_y(path, target_col=None, remove_col=None):
     df = pd.read_csv(path)
 
     if remove_col is not None:
-        x = df.drop(columns=remove_col).drop(columns=target_col)
-    else:
-        x = df.drop(columns=target_col)
+        df = df.drop(columns=remove_col)
 
+    x = df.drop(columns=target_col)
     y = df[target_col]
     
     return df, x, y
