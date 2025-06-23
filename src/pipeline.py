@@ -11,7 +11,7 @@ def build_model_pipeline(cat_cols=None, n_estimators=200, max_depth=None):
     #criação de column_transformer e automação do processo de ordinal encoding paraa variáveis categóricas
     transf = ColumnTransformer(
         transformers=[
-            ('cat_trans', OrdinalEncoder(), cat_cols)
+            ('cat_trans', OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1), cat_cols)
         ],
 
         #variáveis numéricas não passam por encoding e continuam como estão
