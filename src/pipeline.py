@@ -3,6 +3,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OrdinalEncoder
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import StandardScaler
+from sklearn.neural_network import MLPClassifier
 
 def build_model_pipeline(cat_cols=None, num_cols=None, n_estimators=200, max_depth=None):
     #verificação se cat_cols está nulo
@@ -48,7 +49,12 @@ def build_model_pipeline(cat_cols=None, num_cols=None, n_estimators=200, max_dep
     #pipeline do modelo 
     model_pipeline = Pipeline([
         ('prep', transf),
-        ('classifier', RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth))
+        ('classifier', MLPClassifier(
+            hidden_layer_sizes=(40,20), 
+            activation='relu', 
+            learning_rate_init=0.001, 
+            solver='sgd',
+            max_iter=300))
     ])
 
     return model_pipeline
