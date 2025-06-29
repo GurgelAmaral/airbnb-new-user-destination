@@ -1,12 +1,14 @@
 from sklearn.model_selection import GridSearchCV
 import time
 
+#hiperparâmetros a serem buscados
 params = {
     'classifier__n_estimators':[400, 410],
     'classifier__max_depth':[None],
     'classifier__n_jobs':[-1]
 }
 
+#busca, treino e retorne do melhor modelo/estimador
 def get_best_estimators(model, x_train, y_train, cv=5):
     grid = GridSearchCV(model, param_grid=params, scoring='accuracy', cv=cv, n_jobs=-1)
     print(f'Preparação de busca por hiperparâmetros [CHECK]')
