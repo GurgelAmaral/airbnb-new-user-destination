@@ -7,28 +7,32 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 from evaluate import evaluate_model
 from tuning import get_best_estimators
+import joblib as jb
 
+#art ascii Airbnb_model.v1
+with open('gv1.txt', 'r', encoding='utf-8') as file:
+    art = file.read()
+print(art)
+print('Airbnb_model.v1')
 
-df, x, y = load_data_df_x_y(
-    path='train_users_clean_upd.csv', 
-    target_col=['country_destination'], 
-    remove_col=['id', 'Unnamed: 0', 'timestamp_first_active'])
+#Leitura dos datasets de treino e teste
+x = pd.read_csv('x_train_resampled.csv', index_col=0)
+y = pd.read_csv('y_train_resampled.csv', index_col=0)
 
+#captura das colunas categóricas
 cat_cols = get_cat_features(x)
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+#separação para utilização de apenas 15% do dataset (15% de ~1.23e+6 linhas)
+x_train, _, y_train, _ = train_test_split(x, y, train_size=0.15, stratify=y)
+#separação de treino e teste para uso no modelo
+x_train, x_test, y_train, y_test = train_test_split(x_train, y_train, test_size=0.2, stratify=y_train)
 
+#instância do modelo pelo seu pipeline
 model = build_model_pipeline(cat_cols=cat_cols)
 
-
-model
-
+#busca com gridsearch para encontrar o melhor modelo
 best_model = get_best_estimators(model=model, x_train=x_train, y_train=y_train, cv=2)
 
-
+#lista de predições do melhor modelo para uso do cálculo do acurácia
 pred_list = best_model.predict(x_test)
-
 print(f'acurácia: {evaluate_model(y_test, pred_list)}')
-
-#print(pred_list[:5])
-
