@@ -3,9 +3,8 @@ import time
 
 #hiperparâmetros a serem buscados
 params = {
-    'classifier__n_estimators':[400, 410],
-    'classifier__max_depth':[None],
-    'classifier__n_jobs':[-1]
+    'classifier__n_estimators': [350, 450],
+    'classifier__max_depth': [10, 20, 30],
 }
 
 #busca, treino e retorne do melhor modelo/estimador
