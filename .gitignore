@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 *.csv
 link_airbnb_case.txt
+*.joblib
