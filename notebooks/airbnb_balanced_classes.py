@@ -49,7 +49,7 @@ código comentado pois esta versão não usa a versão balanceada e exporta apen
 
 #x_train_rs.dtypes
 
-#Exportação dos datasets
+#Exportação dos datasets já separados
 x_train.to_csv('x_train_resampled.csv')
 y_train.to_csv('y_train_resampled.csv')
 
