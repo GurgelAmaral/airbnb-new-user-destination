@@ -21,10 +21,10 @@ Pipeline de classificação com dados do Airbnb provenientes da competição da 
 
 2. Certifique-se de que os seguintes arquivos CSV estejam no diretório raiz:
 
-   - `x_train_resampled.csv`
-   - `y_train_resampled.csv`
-   - `x_test_resampled.csv`
-   - `y_test_resampled.csv`
+   -- `x_train_resampled.csv`
+   -- `y_train_resampled.csv`
+   -- `x_test_resampled.csv`
+   -- `y_test_resampled.csv`
 
 3. Execute o pipeline:
 
